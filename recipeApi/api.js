@@ -14,10 +14,9 @@ router.get('/ricepes/:ingrdient',async (req, res) =>{
 
         const ricepes = await axios.get(`${RICEPE_BY_INGRDIENT_API_URL}/${ingrdient}`);
 
-        
         if(ricepes.data.results){
             const mappedRicepes = mapRicepes(ricepes.data.results)
-
+            //TODO : filter the ricepes
             return res.status(200).json({ricepes:mappedRicepes})
         }
         return res.status(404).json({ricepes:[]})
@@ -30,9 +29,13 @@ router.get('/ricepes/:ingrdient',async (req, res) =>{
 
 const mapRicepes =  (ricepes)=>{
    const mappedRicepes = ricepes.map((ricepe)=>{
-    const {idMeal,ingredients, title,thumbnail} =  ricepe
+    const {idMeal,ingredients, title,thumbnail,href} =  ricepe
     const mappedRicepe = {
-        idMeal,ingredients, title,thumbnail
+        idMeal,
+        ingredients,
+        title,
+        thumbnail,
+        href
     }
     return mappedRicepe
    })
