@@ -8,7 +8,7 @@ class RecipesModel{
     async getResibes(ingrdient,filter){
         try{
 
-            const resibes = await $.ajax({url:`${RECIPES_ENDPOINT}/${ingrdient}`,data : filter})
+            const { resibes } = await $.ajax({url:`${RECIPES_ENDPOINT}/${ingrdient}`,data : filter})
 
             this.#resibes = resibes;
 
