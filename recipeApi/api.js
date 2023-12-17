@@ -17,12 +17,12 @@ router.get('/ricepes/:ingrdient',async (req, res) =>{
         if(ricepes.data.results){
             const mappedRicepes = mapRicepes(ricepes.data.results)
             //TODO : filter the ricepes
-            return res.status(200).json({ricepes:mappedRicepes})
+            return res.status(axios.HttpStatusCode.Ok).json({ricepes:mappedRicepes})
         }
-        return res.status(404).json({ricepes:[]})
+        return res.status(axios.HttpStatusCode.NotFound).json({ricepes:[]})
 
     }catch(err){
-        return res.status(500).json({message:err.message})
+        return res.status(axios.HttpStatusCode.InternalServerError).json({message:err.message})
     }
 })
 
