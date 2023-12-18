@@ -12,7 +12,16 @@
     <div class="form-container">
         <div class="form">
             <input type="text" id="ingredient-name-ipt" placeholder="ingredient name">
+            
             <button id="search-btn" onclick=searchRicepes()>Search</button>
+
+            <div class="filter-checkboxs">
+                <input id="gluten" onchange=onCheckboxClicked(event) type="checkbox">
+                <label for="gluten">Glutain</label>
+
+                <input id="dairy" onchange=onCheckboxClicked(event) type="checkbox">
+                <label for="dairy">dairy</label>
+            </div>
         </div>
     </div>
 

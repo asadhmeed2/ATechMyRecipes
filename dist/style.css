@@ -38,6 +38,15 @@ body{
     border:none;
 }
 
+.filter-checkboxs{
+    font-size: 25px;
+    padding: 10px;
+}
+.filter-checkboxs input{
+    width: 15px;
+    height: 15px;
+}
+
 .resipes-container{
     width: 100%;
     display: flex;

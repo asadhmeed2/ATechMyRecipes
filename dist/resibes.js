@@ -1,11 +1,21 @@
 class RecipesModel{
     #resipes
+    #filter
     constructor(){
         this.#resipes = [];
+        this.#filter={};
     }
 
     get recipes(){
         return this.#resipes
+    }
+
+    get filter(){
+        return this.#filter
+    }
+
+    set filter(value){
+        this.#filter = value
     }
 
     async getRecipesFromApi(ingrdient,filter){
