@@ -17,9 +17,9 @@ router.get('/ricepes/:ingrdient',async (req, res) =>{
         if(ricepes.data.results){
             const mappedRicepes = mapRicepes(ricepes.data.results)
             //TODO : filter the ricepes
-            return res.status(axios.HttpStatusCode.Ok).json({ricepes:mappedRicepes})
+            return res.status(axios.HttpStatusCode.Ok).json({resipes:mappedRicepes})
         }
-        return res.status(axios.HttpStatusCode.NotFound).json({ricepes:[]})
+        return res.status(axios.HttpStatusCode.NotFound).json({resipes:[]})
 
     }catch(err){
         return res.status(axios.HttpStatusCode.InternalServerError).json({message:err.message})
@@ -27,8 +27,8 @@ router.get('/ricepes/:ingrdient',async (req, res) =>{
 })
 
 
-const mapRicepes =  (ricepes)=>{
-   const mappedRicepes = ricepes.map((ricepe)=>{
+const mapRicepes =  (recipes)=>{
+   const mappedRicepes = recipes.map((ricepe)=>{
     const {idMeal,ingredients, title,thumbnail,href} =  ricepe
     const mappedRicepe = {
         idMeal,

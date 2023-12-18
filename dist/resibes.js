@@ -1,18 +1,21 @@
 class RecipesModel{
-    #resibes
+    #resipes
     constructor(){
-        this.#resibes = [];
+        this.#resipes = [];
     }
 
+    get recipes(){
+        return this.#resipes
+    }
 
-    async getResibes(ingrdient,filter){
+    async getRecipesFromApi(ingrdient,filter){
         try{
 
-            const { resibes } = await $.ajax({url:`${RECIPES_ENDPOINT}/${ingrdient}`,data : filter})
+            const { resipes } = await $.ajax({url:`${RECIPES_ENDPOINT}/${ingrdient}`,data : filter})
 
-            this.#resibes = resibes;
+            this.#resipes = resipes;
 
-            return resibes;
+            return resipes;
 
         }catch(e){
             console.error("🚀 ~ file: resibes.js:13 ~ Recipes ~ getResibes ~ e:", e)

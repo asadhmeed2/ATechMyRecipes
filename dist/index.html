@@ -11,12 +11,36 @@
     
     <div class="form-container">
         <div class="form">
-            <input type="text" id="ingredientName" placeholder="ingredient name">
-            <button id="search-btn">Search</button>
+            <input type="text" id="ingredient-name-ipt" placeholder="ingredient name">
+            <button id="search-btn" onclick=searchRicepes()>Search</button>
         </div>
     </div>
+
+    <div class="resipes-container"></div>
     
     
+    <script id="ricepe-card-template" type="text/x-handlebars-template">
+        <div class="recipe-card" data-id="{{idMeal}}">
+            <div class="recipe-img-container">
+                <img class="ricepe-img" src="{{thumbnail}}" alt="ricepe image" >
+            </div>
+            <div class="recipe-card-footer">
+                <div class="recipe-link-contaier">
+                    <a href="{{href}}" target="_blank" class="title-link">{{title}}</a>
+                </div>
+                
+                <div class="ing-contaier">
+                    <ul class="ing-list"></ul>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script id="ing-list-item-template" type="text/x-handlebars-template">
+       <i class="ing-item">{{ing}}</i>
+    </script>
+
+    <script src="handlebars/dist/handlebars.min.js"></script>
     <script src="consts.js"></script>
     <script src="renderer.js"></script>
     <script src="resibes.js"></script>
