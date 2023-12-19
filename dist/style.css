@@ -57,6 +57,7 @@ body{
     font-size: 25px;
     padding: 10px;
 }
+
 .filter-checkboxs input{
     width: 15px;
     height: 15px;
@@ -79,6 +80,13 @@ body{
     background-color: var(--recipe-card-bg-color); 
     box-shadow: 3px 3px 5px lightblue ,-3px -3px 5px lightblue;
     overflow: hidden;
+}
+
+.details{
+    display: flex;
+    justify-content: space-between;
+    padding-block:10px ;
+    font-size: larger;
 }
 
 .recipe-card-footer{
