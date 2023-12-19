@@ -1,12 +1,20 @@
+const INIT_OPTION_VALUE_IDX = 0;
+
 class RendererModal {
      #recipesView;
+     #areaSelect;
+     #categorySelect;
      #recipeHandler;
      #ingHandler;
+     #selectOptHandler;
     
     constructor(){
         this.#recipesView = $('.resipes-container');
+        this.#areaSelect = $('#area-select');
+        this.#categorySelect = $('#category-select');
         this.#recipeHandler = this.#getTemplate('#ricepe-card-template')
         this.#ingHandler = this.#getTemplate('#ing-list-item-template');
+        this.#selectOptHandler = this.#getTemplate('#select-option-template');
     }
 
 
@@ -16,13 +24,16 @@ class RendererModal {
         return handleTemplate
     }
 
-    render(recipes){
+    render(recipes,filter){
         this.#recipesView.empty();
         recipes.forEach(recipe=>{
             const newHtml = this.#recipeHandler(recipe);
             this.#recipesView.append(newHtml);
             this.#renderIngs(recipe.ingredients,recipe.idMeal);
         })
+
+        this.#renderSelectOptions(this.#areaSelect,AREA_NAMES,this.#selectOptHandler,filter.area)
+        this.#renderSelectOptions(this.#categorySelect,CATEGORY_NAMES,this.#selectOptHandler,filter.category)
     }
 
     #renderIngs(ings,idMeal){
@@ -32,6 +43,16 @@ class RendererModal {
                 const newHtml = this.#ingHandler({ing})
                 ingView.append(newHtml);
             })
+    }
+
+    #renderSelectOptions(selectElement , options,handler,initValue){
+        selectElement.empty();
+        options.forEach(name=>{
+            const newHtml = handler({name});
+            selectElement.append(newHtml)
+        })
+
+        selectElement.val(initValue?initValue:options[INIT_OPTION_VALUE_IDX])
     }
 
 }

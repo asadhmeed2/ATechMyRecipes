@@ -7,6 +7,8 @@ const RICEPE_BY_INGRDIENT_API_URL = 'https://recipes-goodness-elevation.herokuap
 const DAIRY_INGREDIENTS = ["Cream","Cheese","Milk","Butter","Creme","Ricotta","Mozzarella","Custard","Cream Cheese"]
 const GLUTEN_INGREDIENTS = ["Flour","Bread","spaghetti","Biscuits","Beer"]
 
+const All = 'All'
+
 const DAIRY_FILTER_PARAM = 'dairy';
 const GLUTEN_FILTER_PARAM = 'gluten';
 
@@ -20,5 +22,6 @@ module.exports={
     DAIRY_FILTER_PARAM,
     GLUTEN_FILTER_PARAM,
     FILTER_CATEGORY_PARAM,
-    FILTER_AREA_PARAM
+    FILTER_AREA_PARAM,
+    All
 }

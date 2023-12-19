@@ -4,12 +4,25 @@ const {
     DAIRY_FILTER_PARAM,
     DAIRY_INGREDIENTS,
     FILTER_CATEGORY_PARAM,
-    FILTER_AREA_PARAM
+    FILTER_AREA_PARAM,
+    All
 } = require('../config/config')
 
 const {NoRecipesFoundError} = require('../customErrors/customError')
 
 class RecipeModal{
+    #ing2Recipes
+    constructor(){
+        this.#ing2Recipes={}
+    }
+
+    get ing2Recipes(){
+        return this.#ing2Recipes
+    }
+
+    set ing2Recipes({ingrdient,recipes}){
+        this.#ing2Recipes[ingrdient] = recipes;
+    }
 
     checkRecipes(recipes){
         if(!recipes){
@@ -70,6 +83,9 @@ class RecipeModal{
     }
     
     #filter(array,itemPropName,filterVal){
+        if(filterVal === All){
+            return array
+        }
         return array.filter((item)=>{
             const isInProp = this.#checkEquality(filterVal,item[itemPropName])
             return isInProp ;

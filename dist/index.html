@@ -13,9 +13,16 @@
         <div class="form">
             <div class="inputs">
                 <input type="text" id="ingredient-name-ipt" class="input" placeholder="ingredient name">
-                <input type="text" name="area" oninput=onInputChange(event) id="area-ipt" class="input" placeholder="Recipe Area">
-                <input type="text" name="category"  oninput=onInputChange(event) id="category-ipt" class="input" placeholder="Recipe Category">
+                <div class="area-select-container">
+                    <select onchange=onInputChange(event) name="area" id="area-select" class="select"></select>
+                </div>
+    
+                <div class="category-select-container" >
+                    <select onchange=onInputChange(event) name="category" id="category-select" class="select"></select>
+                </div>
             </div>
+
+
             <button id="search-btn" onclick=searchRicepes()>Search</button>
 
             <div class="filter-checkboxs">
@@ -40,12 +47,26 @@
                 <div class="recipe-link-contaier">
                     <a href="{{href}}" target="_blank" class="title-link">{{title}}</a>
                 </div>
+
+                <div class="area-name">
+                    <span>Area: </span>
+                    <span>{{area}}</span>
+                </div>
+
+                <div class="category-name">
+                    <span>category: </span>
+                    <span>{{category}}</span>
+                </div>
                 
                 <div class="ing-contaier">
                     <ul class="ing-list"></ul>
                 </div>
             </div>
         </div>
+    </script>
+
+    <script id="select-option-template" type="text/x-handlebars-template">
+        <option value="{{name}}">{{name}}</option>
     </script>
 
     <script id="ing-list-item-template" type="text/x-handlebars-template">

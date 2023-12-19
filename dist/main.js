@@ -18,7 +18,7 @@ const searchRicepes = async ()=>{
     // const recipes = [];
     const recipes = await recipesModel.getRecipesFromApi(ingredient,filter);
     
-    rendererModel.render(recipes);
+    rendererModel.render(recipes,filter);
     
     recipesContainer.on('click','.ricepe-img' ,function(e){
         const firstIngredient = $(this).closest(".recipe-card").find('.ing-list').find('.ing-item').html()

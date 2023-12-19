@@ -13,14 +13,21 @@ const {
 router.get('/:ingrdient',async (req, res) =>{
     const ingrdient = req.params.ingrdient;
     const filter = req.query;
+    const ing2Recipes = recipeModal.ing2Recipes
 
     try{
-
-        const ricepes = await axios.get(`${RICEPE_BY_INGRDIENT_API_URL}/${ingrdient}`);
+        let recipes = [];
+        if(ing2Recipes[ingrdient]){
+            recipes = ing2Recipes[ingrdient]
+        }else{
+            const recipesApiData = await axios.get(`${RICEPE_BY_INGRDIENT_API_URL}/${ingrdient}`);
+            recipes = recipesApiData.data.results;
+            recipeModal.ing2Recipes = {ingrdient,recipes}
+        }
 
             try{
-                recipeModal.checkRecipes(ricepes.data.results)
-                const mappedRicepes = recipeModal.mapRicepes(ricepes.data.results)
+                recipeModal.checkRecipes(recipes)
+                const mappedRicepes = recipeModal.mapRicepes(recipes)
                 const filteredRicepes = recipeModal.filterRicepes(mappedRicepes,filter);
                 
                 return res.status(axios.HttpStatusCode.Ok).json({resipes:filteredRicepes})
