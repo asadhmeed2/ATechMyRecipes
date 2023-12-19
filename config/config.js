@@ -10,11 +10,15 @@ const GLUTEN_INGREDIENTS = ["Flour","Bread","spaghetti","Biscuits","Beer"]
 const DAIRY_FILTER_PARAM = 'dairy';
 const GLUTEN_FILTER_PARAM = 'gluten';
 
+const FILTER_CATEGORY_PARAM = 'category';
+const FILTER_AREA_PARAM = 'area';
 module.exports={
     SERVER_PORT,
     RICEPE_BY_INGRDIENT_API_URL,
     DAIRY_INGREDIENTS,
     GLUTEN_INGREDIENTS,
     DAIRY_FILTER_PARAM,
-    GLUTEN_FILTER_PARAM
+    GLUTEN_FILTER_PARAM,
+    FILTER_CATEGORY_PARAM,
+    FILTER_AREA_PARAM
 }

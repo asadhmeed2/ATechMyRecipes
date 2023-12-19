@@ -11,8 +11,11 @@
     
     <div class="form-container">
         <div class="form">
-            <input type="text" id="ingredient-name-ipt" placeholder="ingredient name">
-            
+            <div class="inputs">
+                <input type="text" id="ingredient-name-ipt" class="input" placeholder="ingredient name">
+                <input type="text" name="area" oninput=onInputChange(event) id="area-ipt" class="input" placeholder="Recipe Area">
+                <input type="text" name="category"  oninput=onInputChange(event) id="category-ipt" class="input" placeholder="Recipe Category">
+            </div>
             <button id="search-btn" onclick=searchRicepes()>Search</button>
 
             <div class="filter-checkboxs">

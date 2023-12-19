@@ -21,10 +21,20 @@ body{
 }
 
 #ingredient-name-ipt{
+}
+
+.input{
     height: 30px;
     max-width:600px;
     border-radius:5px;
     font-size: 20px;
+}
+
+.inputs{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-bottom: 10px;
 }
 
 #search-btn{
