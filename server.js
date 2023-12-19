@@ -15,7 +15,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname,'dist')));
 app.use(express.static(path.join(__dirname, 'node_modules')))
 
-app.use(recipeRouter)
+app.use('/ricepes',recipeRouter)
 
 app.listen(SERVER_PORT, function (){
     console.log(`server is running at port ${SERVER_PORT}`);
