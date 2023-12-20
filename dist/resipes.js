@@ -3,7 +3,7 @@ class RecipesModel{
     #filter
     constructor(){
         this.#resipes = [];
-        this.#filter={};
+        this.#filter={sensitivities:[]};
     }
 
     get recipes(){

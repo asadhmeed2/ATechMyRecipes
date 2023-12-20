@@ -31,8 +31,17 @@ ingInput.val('cream')
 searchRicepes()
 
 const onCheckboxClicked = (e)=>{
-    const filter = recipesModel.filter
-    recipesModel.filter = {...filter,[e.target.id]:filter[e.target.id]?!filter[e.target.id]:true}
+    const sensitivities = recipesModel.filter.sensitivities
+    const idx = sensitivities.findIndex(sinsitive => sinsitive === e.target.id);
+    let tempSensitivities = sensitivities 
+
+    if(idx !== -1){
+        tempSensitivities.splice(idx,1);
+    }else{
+        tempSensitivities.push(e.target.id)
+    }
+
+    recipesModel.filter = {...recipesModel.filter,sensitivities:tempSensitivities}
 }
 
 const onInputChange = (e)=>{

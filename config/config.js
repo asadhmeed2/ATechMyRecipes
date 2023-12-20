@@ -12,6 +12,12 @@ const All = 'All'
 const DAIRY_FILTER_PARAM = 'dairy';
 const GLUTEN_FILTER_PARAM = 'gluten';
 
+const SENSITIVITIES_MAP = {
+    [DAIRY_FILTER_PARAM]:DAIRY_INGREDIENTS,
+    [GLUTEN_FILTER_PARAM]:GLUTEN_INGREDIENTS,
+
+}
+
 const FILTER_CATEGORY_PARAM = 'category';
 const FILTER_AREA_PARAM = 'area';
 module.exports={
@@ -23,5 +29,6 @@ module.exports={
     GLUTEN_FILTER_PARAM,
     FILTER_CATEGORY_PARAM,
     FILTER_AREA_PARAM,
-    All
+    SENSITIVITIES_MAP,
+    All,
 }

@@ -1,11 +1,8 @@
 const {
-    GLUTEN_FILTER_PARAM,
-    GLUTEN_INGREDIENTS,
-    DAIRY_FILTER_PARAM,
-    DAIRY_INGREDIENTS,
     FILTER_CATEGORY_PARAM,
     FILTER_AREA_PARAM,
-    All
+    All,
+    SENSITIVITIES_MAP
 } = require('../config/config')
 
 const {NoRecipesFoundError} = require('../customErrors/customError')
@@ -50,29 +47,28 @@ class RecipeModal{
     filterRicepes (recipes,filter){
         
         let filteredRicepes = recipes;
+        const {sensitivities,...restFilter} = filter;
 
-        filteredRicepes =recipes.filter((ricepe)=>{
-            const hasGluten = this.#isSomeIngredientsinArray(ricepe.ingredients,GLUTEN_INGREDIENTS,filter[GLUTEN_FILTER_PARAM])
+        filteredRicepes =recipes.filter((recipe)=>this.#filterViaSensitivities(recipe,sensitivities))
 
-            const hasDairy = this.#isSomeIngredientsinArray(ricepe.ingredients,DAIRY_INGREDIENTS,filter[DAIRY_FILTER_PARAM])
-          
-        return !(hasGluten || hasDairy) ;
-        })
-
-        if(filter[FILTER_CATEGORY_PARAM]){
-            filteredRicepes = this.#filter(filteredRicepes,FILTER_CATEGORY_PARAM,filter[FILTER_CATEGORY_PARAM]) 
+        if(restFilter){
+            for(let prop of Object.keys(restFilter)){
+                filteredRicepes = this.#filterByRecipeProperty(filteredRicepes, prop, filter[prop]) 
+            }
         }
-
-        if(filter[FILTER_AREA_PARAM]){
-            filteredRicepes = this.#filter(filteredRicepes,FILTER_AREA_PARAM,filter[FILTER_AREA_PARAM]) 
-        }
-    
         return filteredRicepes
     }
 
+    #filterViaSensitivities(recipe,sensitivities){
+            for(let sensitivity of sensitivities || []){
+                return !this.#isIngredientsinSensitivetyArray(recipe.ingredients,SENSITIVITIES_MAP[sensitivity])
+            }
+            return true;
+    }
+
     
-    #isSomeIngredientsinArray(ingredients,array,filterPropVal){
-        return  filterPropVal === "true"? ingredients.some(ing=> array.some(str => ing.toLowerCase().includes(str.toLowerCase()))):false;
+    #isIngredientsinSensitivetyArray(ingredients,array){
+        return ingredients.some(ing=> array.includes(ing));
     }
     
     #checkEquality(value1,value2){
@@ -82,11 +78,11 @@ class RecipeModal{
         return true
     }
     
-    #filter(array,itemPropName,filterVal){
+    #filterByRecipeProperty(recipes,itemPropName,filterVal){
         if(filterVal === All){
-            return array
+            return recipes
         }
-        return array.filter((item)=>{
+        return recipes.filter((item)=>{
             const isInProp = this.#checkEquality(filterVal,item[itemPropName])
             return isInProp ;
             })
