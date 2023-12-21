@@ -136,6 +136,11 @@ body{
     color: var(--ing-color);
 }
 
+.rating{
+    display: flex;
+    align-items: center;
+}
+
 
 @media  (min-width: 768px) {
 
