@@ -1,9 +1,10 @@
 const {
-    FILTER_CATEGORY_PARAM,
-    FILTER_AREA_PARAM,
     All,
     SENSITIVITIES_MAP
 } = require('../config/config')
+
+const { faker } = require('@faker-js/faker');
+const Utils = require('../utils/utils');
 
 const {NoRecipesFoundError} = require('../customErrors/customError')
 
@@ -37,7 +38,9 @@ class RecipeModal{
             thumbnail,
             href,
             area:strArea,
-            category:strCategory
+            category:strCategory,
+            chef: faker.person.fullName(),
+            rating: Utils.getRandomNumber(5)
         }
         return mappedRicepe
         })
