@@ -29,6 +29,10 @@ class RendererModal {
 
     render(recipes,filter){
         this.#recipesView.empty();
+
+        this.#renderSelectOptions(this.#areaSelect,AREA_NAMES,this.#selectOptHandler,filter.area)
+        this.#renderSelectOptions(this.#categorySelect,CATEGORY_NAMES,this.#selectOptHandler,filter.category)
+
         recipes.forEach(recipe=>{
             const newHtml = this.#recipeHandler(recipe);
             this.#recipesView.append(newHtml);
@@ -36,8 +40,6 @@ class RendererModal {
             this.#renderRatingStars(recipe.rating,recipe.idMeal);
         })
 
-        this.#renderSelectOptions(this.#areaSelect,AREA_NAMES,this.#selectOptHandler,filter.area)
-        this.#renderSelectOptions(this.#categorySelect,CATEGORY_NAMES,this.#selectOptHandler,filter.category)
     }
 
     #renderIngs(ings,idMeal){
@@ -54,7 +56,7 @@ class RendererModal {
         const emptyStarHtml = this.#ratingStarHandler({starIcon:'star_border'})
         const ratingView = this.#recipesView.find(`[data-id=${idMeal}]`).find('.rating')
         ratingView.empty();
-        for(let i=1;i<=RECIPE_MAX_RATING ; i++){
+        for(let i=1; i<=RECIPE_MAX_RATING; i++){
             if(rating >= i){
                 ratingView.append(fullStarHtml)
             }else{

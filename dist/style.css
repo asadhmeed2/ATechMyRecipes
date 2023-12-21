@@ -13,6 +13,10 @@ body{
     background-color: var(--bg-color);
 }
 
+.yellow-text{
+    color: rgb(199, 167, 10);
+}
+
 .form-container{
     display: flex;
     flex-direction: column;
