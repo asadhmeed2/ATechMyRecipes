@@ -13,6 +13,10 @@ body{
     background-color: var(--bg-color);
 }
 
+a{
+    text-decoration: none;
+}
+
 .yellow-text{
     color: rgb(199, 167, 10);
 }
@@ -143,6 +147,27 @@ body{
 .rating{
     display: flex;
     align-items: center;
+}
+
+.share-via-email-container{
+    display: flex;
+    justify-content: center;
+    color: black;
+}
+
+.share-via-email-container a{
+    color: black;
+}
+
+.share-via-email-container button{
+    padding: 5px;
+    border-radius: 5px;
+    background-color: transparent;
+}
+
+.share-via-email-container button:hover{
+    padding: 5px;
+    background-color: var(--bg-color);
 }
 
 
