@@ -4,9 +4,13 @@ const {
 } = require('../config/config')
 
 const { faker } = require('@faker-js/faker');
+const gipyApi = require('../giphyAPI/giphyAPI');
+
 const Utils = require('../utils/utils');
 
 const {NoRecipesFoundError} = require('../customErrors/customError')
+
+const GIF_INDEX = 0;
 
 class RecipeModal{
     #ing2Recipes
@@ -28,8 +32,10 @@ class RecipeModal{
         }
     }
 
-    mapRicepes(recipes){
-        const mappedRicepes = recipes.map((ricepe)=>{
+    async mapRicepes(recipes){
+        // const gifs = await this.#getRicepeGif(recipes.map(recipe => recipe.title).join(' '));
+
+        const mappedRicepes = recipes.map( (ricepe)=>{
         const {idMeal,ingredients, title,thumbnail,href,strArea,strCategory} =  ricepe
         const mappedRicepe = {
             idMeal,
@@ -44,7 +50,14 @@ class RecipeModal{
         }
         return mappedRicepe
         })
-        return mappedRicepes
+    
+        let recipesWithGifs =[]
+        
+        for(let ric of mappedRicepes){
+            recipesWithGifs =[...recipesWithGifs,{...ric,gif: (await this.#getRicepeGif(ric.title)).embed_url}]
+        } 
+        
+        return recipesWithGifs
     }
 
     filterRicepes (recipes,filter){
@@ -60,6 +73,13 @@ class RecipeModal{
             }
         }
         return filteredRicepes
+    }
+
+    async #getRicepeGif(name){
+
+      const gifs = await gipyApi.getGif(`food ${name}`);
+
+      return gifs[GIF_INDEX] ?? '';
     }
 
     #filterViaSensitivities(recipe,sensitivities){

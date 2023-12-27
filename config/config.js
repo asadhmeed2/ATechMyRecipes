@@ -20,6 +20,9 @@ const SENSITIVITIES_MAP = {
 
 const FILTER_CATEGORY_PARAM = 'category';
 const FILTER_AREA_PARAM = 'area';
+
+const GIPHY_API_KEY = 'vGDiU1FUmxuSg5Jrk71FOkJPAbno5DlX'
+const GIPHY_GIFS_API ='http://api.giphy.com/v1/gifs'
 module.exports={
     SERVER_PORT,
     RICEPE_BY_INGRDIENT_API_URL,
@@ -31,4 +34,6 @@ module.exports={
     FILTER_AREA_PARAM,
     SENSITIVITIES_MAP,
     All,
+    GIPHY_API_KEY,
+    GIPHY_GIFS_API
 }

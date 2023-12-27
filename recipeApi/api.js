@@ -27,7 +27,7 @@ router.get('/:ingrdient',async (req, res) =>{
 
             try{
                 recipeModal.checkRecipes(recipes)
-                const mappedRicepes = recipeModal.mapRicepes(recipes)
+                const mappedRicepes = await recipeModal.mapRicepes(recipes)
                 const filteredRicepes = recipeModal.filterRicepes(mappedRicepes,filter);
                 
                 return res.status(axios.HttpStatusCode.Ok).json({resipes:filteredRicepes})
