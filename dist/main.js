@@ -18,7 +18,10 @@ const searchRicepes = async ()=>{
     // const recipes = [];
     const recipes = await recipesModel.getRecipesFromApi(ingredient,filter);
     
-    rendererModel.render(recipes,filter);
+    const isMaxPage = recipesModel.isMaxPage;
+    const isFirstPage = recipesModel.isFirstPage;
+    
+    rendererModel.render(recipes,filter,isMaxPage,isFirstPage);
     
     recipesContainer.on('click','.ricepe-img' ,function(e){
         const firstIngredient = $(this).closest(".recipe-card").find('.ing-list').find('.ing-item').html()
@@ -29,6 +32,25 @@ const searchRicepes = async ()=>{
 ingInput.val('cream')
 
 searchRicepes()
+
+const nextPage=()=>{
+    if(!recipesModel.isMaxPage){
+        const page = recipesModel.filter.page
+        const filter = recipesModel.filter
+
+        recipesModel.filter ={...filter,page:page + 1}
+        searchRicepes() 
+    }
+}
+
+const prevPage=()=>{
+    const page = recipesModel.filter.page
+    const filter = recipesModel.filter
+    if(page > FIRST_PAGE){
+        recipesModel.filter = {...filter,page:page - 1}
+        searchRicepes() 
+    }
+}
 
 const onCheckboxClicked = (e)=>{
     const sensitivities = recipesModel.filter.sensitivities

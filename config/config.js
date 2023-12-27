@@ -23,6 +23,9 @@ const FILTER_AREA_PARAM = 'area';
 
 const GIPHY_API_KEY = 'vGDiU1FUmxuSg5Jrk71FOkJPAbno5DlX'
 const GIPHY_GIFS_API ='http://api.giphy.com/v1/gifs'
+
+const MAX_RICEPES_IN_PAGE = 5;
+
 module.exports={
     SERVER_PORT,
     RICEPE_BY_INGRDIENT_API_URL,
@@ -35,5 +38,6 @@ module.exports={
     SENSITIVITIES_MAP,
     All,
     GIPHY_API_KEY,
-    GIPHY_GIFS_API
+    GIPHY_GIFS_API,
+    MAX_RICEPES_IN_PAGE,
 }

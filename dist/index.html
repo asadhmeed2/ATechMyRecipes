@@ -41,6 +41,10 @@
                 <label for="dairy">dairy</label>
             </div>
         </div>
+
+        <div class="pagination-btns-container">
+            
+        </div>
     </div>
 
     <div class="resipes-container"></div>
@@ -105,6 +109,11 @@
 
     <script id="rating-star-template" type="text/x-handlebars-template">
        <i class="material-icons" class="yellow-text">{{starIcon}}</i>
+    </script>
+
+    <script id="pagination-btn-template" type="text/x-handlebars-template">
+        <button {{prevDisabled}} onclick=prevPage()>prev</button>
+        <button {{nextDisabled}} onclick=nextPage()>next</button> 
     </script>
 
     <script src="handlebars/dist/handlebars.min.js"></script>

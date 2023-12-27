@@ -7,6 +7,7 @@ const recipeModal = require('../models/recipeModal')
 
 const {
     RICEPE_BY_INGRDIENT_API_URL,
+    MAX_RICEPES_IN_PAGE,
 } = require('../config/config')
 
 
@@ -29,8 +30,12 @@ router.get('/:ingrdient',async (req, res) =>{
                 recipeModal.checkRecipes(recipes)
                 const mappedRicepes = await recipeModal.mapRicepes(recipes)
                 const filteredRicepes = recipeModal.filterRicepes(mappedRicepes,filter);
+
+                const ricepePatch = recipeModal.getPatch(filteredRicepes,+filter.page);
+
+                const isMaxPage = filter.page * MAX_RICEPES_IN_PAGE > filteredRicepes.length-1;
                 
-                return res.status(axios.HttpStatusCode.Ok).json({resipes:filteredRicepes})
+                return res.status(axios.HttpStatusCode.Ok).json({resipes:ricepePatch,isMaxPage})
             }catch(e){
                 return res.status(axios.HttpStatusCode.NotFound).json({resipes:[], message:e.message})
             }

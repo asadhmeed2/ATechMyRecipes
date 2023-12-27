@@ -4,3 +4,4 @@ const AREA_NAMES = ['All','American','Mexican','British','Canadian','Chinese','J
 const CATEGORY_NAMES = ['All','Dessert','Miscellaneous','Beef','Seafood','Vegetarian','Pork','Chicken'].sort()
 
 const RECIPE_MAX_RATING = 5;
+const FIRST_PAGE = 1;

@@ -1,6 +1,7 @@
 const {
     All,
-    SENSITIVITIES_MAP
+    SENSITIVITIES_MAP,
+    MAX_RICEPES_IN_PAGE
 } = require('../config/config')
 
 const { faker } = require('@faker-js/faker');
@@ -11,6 +12,7 @@ const Utils = require('../utils/utils');
 const {NoRecipesFoundError} = require('../customErrors/customError')
 
 const GIF_INDEX = 0;
+const PAGE_IDX_DEFFERNT = 1;
 
 class RecipeModal{
     #ing2Recipes
@@ -73,6 +75,14 @@ class RecipeModal{
             }
         }
         return filteredRicepes
+    }
+
+    getPatch(filteredRicepes, page){
+        const firstRecipeIdx = (page - PAGE_IDX_DEFFERNT) * MAX_RICEPES_IN_PAGE;
+        const lastRecipeIdx = firstRecipeIdx +MAX_RICEPES_IN_PAGE;
+        const result = filteredRicepes.filter((_,idx)=> idx >= firstRecipeIdx && idx < lastRecipeIdx)
+
+        return result
     }
 
     async #getRicepeGif(name){

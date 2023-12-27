@@ -1,9 +1,11 @@
 class RecipesModel{
     #resipes
     #filter
+    #isMaxPage
     constructor(){
         this.#resipes = [];
-        this.#filter={sensitivities:[]};
+        this.#filter={sensitivities:[],page: FIRST_PAGE};
+        this.#isMaxPage= false;
     }
 
     get recipes(){
@@ -18,12 +20,26 @@ class RecipesModel{
         this.#filter = value
     }
 
+    get isMaxPage(){
+        return this.#isMaxPage
+    }
+
+    set isMaxPage(value){
+        this.#isMaxPage = value
+    }
+
+    get isFirstPage(){
+        return this.#filter.page === FIRST_PAGE
+    }
+
     async getRecipesFromApi(ingrdient,filter){
         try{
 
-            const { resipes } = await $.ajax({url:`${RECIPES_ENDPOINT}/${ingrdient}`,data : filter})
+            const { resipes,isMaxPage } = await $.ajax({url:`${RECIPES_ENDPOINT}/${ingrdient}`,data : filter})
 
             this.#resipes = resipes;
+
+            this.#isMaxPage = isMaxPage;
 
             return resipes;
 
