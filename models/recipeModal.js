@@ -56,7 +56,7 @@ class RecipeModal{
         for(let ric of mappedRicepes){
             recipesWithGifs =[...recipesWithGifs,{...ric,gif: (await this.#getRicepeGif(ric.title)).embed_url}]
         } 
-        
+
         return recipesWithGifs
     }
 
@@ -77,7 +77,7 @@ class RecipeModal{
 
     async #getRicepeGif(name){
 
-      const gifs = await gipyApi.getGif(`food ${name}`);
+      const gifs = await gipyApi.getGif(`Food ${name}`);
 
       return gifs[GIF_INDEX] ?? '';
     }
